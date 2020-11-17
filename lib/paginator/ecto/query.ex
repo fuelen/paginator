@@ -39,7 +39,7 @@ defmodule Paginator.Ecto.Query do
   defp filter_values(query, fields, values, cursor_direction) do
     sorts =
       fields
-      |> Keyword.keys()
+      |> Enum.map(fn {k, _v} -> k end)
       |> Enum.zip(values)
       |> Enum.reject(fn val -> match?({_column, nil}, val) end)
 
